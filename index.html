@@ -103,22 +103,76 @@
             --text-light: #94a3b8;
         }
 
-        /* CTA Visit Button Styles */
-        .cta-visit {
+        /* CTA Button Styles */
+        .btn-cta {
             background-color: var(--primary);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.25rem;
             border-radius: var(--radius);
             font-weight: 600;
             transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
         }
-        .cta-visit:hover {
+        .btn-cta:hover {
             background-color: var(--primary-dark);
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(223, 23, 131, 0.3);
         }
-        .dark .cta-visit:hover {
+        .dark .btn-cta:hover {
             background-color: var(--primary-light);
+        }
+
+        /* Icon Background Styles */
+        .icon-bg {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .icon-bg i {
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        /* Details Button */
+        .btn-details {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        .btn-details:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        .dark .btn-details:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Checkmark Button */
+        .btn-checkmark {
+            background-color: var(--primary-lighter);
+            color: var(--primary-dark);
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        .btn-checkmark:hover {
+            background-color: var(--primary-light);
+            color: white;
         }
 
 .custom-image-widget {
@@ -292,8 +346,9 @@ padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-</style>
 
+    
+</style>
 
     
 </head>
@@ -303,7 +358,7 @@ padding: 20px;
     
     
          <div class="custom-image-widget" style="position: relative; display: inline-block;"> <!-- ADD THESE STYLES -->
-    <a href="https://bebell-digital-solutions.github.io/magic-toolbox-database/es-v03">
+    <a href="https://bebell-digital-solutions.github.io/vibecoding-toolbox/spanish">
         <img class="custom-image" 
              src="https://bucket.mlcdn.com/a/3336/3336910/images/138f14304ea21715dfae64ae5fe1d71b08c2d451.png" 
              alt="English Translation"
@@ -471,6 +526,8 @@ padding: 20px;
         const SAMPLE_TAGS_LIST = [['AI', 'Productivity', 'Free'], ['Creative', 'Design', 'Paid'], ['Development', 'Utility', 'Open Source'], ['Marketing', 'Analytics', 'Freemium'], ['Business', 'Collaboration', 'Subscription'], ['Data', 'Research', 'Beta'], ['Automation', 'Efficiency', 'New'], ['Finance', 'Tracking', 'Pro'], ['Security', 'Privacy', 'Essential'], ['Content', 'Writing', 'Popular'], ['Sales', 'CRM', 'Enterprise'], ['Ecommerce', 'Online Store', 'Payments'], ['Social', 'Engagement', 'Community'], ['Project Management', 'Agile', 'Teamwork'], ['Audio', 'Podcast', 'Music Production'], ['Video Editing', 'Filmmaking', 'Streaming']];
 
 
+
+    
         // --- STATE VARIABLES ---
         let toolboxData = [];
         let isDarkMode = false;
@@ -482,6 +539,9 @@ padding: 20px;
         let selectedTool = null; 
         let showAllSubcategoriesState = false;
 
+
+
+    
         // --- DOM ELEMENTS ---
         const loadingOverlayEl = document.getElementById('loadingOverlay');
         const loadingMessageEl = document.getElementById('loadingMessage');
