@@ -1,1 +1,1 @@
-# magic-toolbox-vibecoding
+# Magic-Toolbox-VibeCoding
