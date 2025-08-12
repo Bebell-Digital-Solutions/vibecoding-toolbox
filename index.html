@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Toolbox - Tools & Resources Directory</title>
+    <title>VibeCoding Toolbox - Tools & Resources Directory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
@@ -13,110 +13,69 @@
 
 
     
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                        poppins: ['Poppins', 'sans-serif'],
+   <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    inter: ['Inter', 'sans-serif'],
+                    poppins: ['Poppins', 'sans-serif'],
+                },
+                colors: {
+                    'magic-purple': '#DF1783', // Changed from #6A0DAD
+                    'magic-purple-light': '#F472B6', // Changed from #8A2BE2
+                    'magic-teal': '#00BFA5',
+                    'magic-teal-light': '#48D1CC',
+                    'slate': {
+                        100: '#f1f5f9',
+                        200: '#e2e8f0',
+                        300: '#cbd5e1',
+                        400: '#94a3b8',
+                        500: '#64748b',
+                        600: '#475569',
+                        700: '#334155',
+                        800: '#1e293b',
+                        850: '#17202A', 
+                        900: '#0f172a',
                     },
-                    colors: {
-                        'magic-purple': '#6A0DAD',
-                        'magic-purple-light': '#8A2BE2',
-                        'magic-teal': '#00BFA5',
-                        'magic-teal-light': '#48D1CC',
-                        'slate': {
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b',
-                            850: '#17202A', 
-                            900: '#0f172a',
-                        },
+                },
+                backgroundImage: {
+                    'magic-gradient': 'linear-gradient(to right, #DF1783, #00BFA5)', // Changed first color
+                },
+                boxShadow: {
+                    'card-light': '0 5px 15px rgba(0, 0, 0, 0.08)',
+                    'card-dark': '0 5px 15px rgba(255, 255, 255, 0.05)',
+                    'card-hover-light': '0 8px 25px rgba(0, 0, 0, 0.12)',
+                    'card-hover-dark': '0 8px 25px rgba(255, 255, 255, 0.08)',
+                    'sidebar-light': '5px 0px 15px rgba(0,0,0,0.1)',
+                    'sidebar-dark': '5px 0px 15px rgba(0,0,0,0.25)',
+                },
+                typography: (theme) => ({
+                    DEFAULT: {
+                      css: {
+                        color: theme('colors.gray.700'),
+                        a: { color: theme('colors.magic-purple'), '&:hover': { color: theme('colors.magic-purple-light') } },
+                        strong: { color: theme('colors.gray.800') }, h5: { color: theme('colors.gray.800'), fontWeight: '600' },
+                        ul: { listStyleType: 'disc', paddingLeft: '1.5em' }, 'ul > li::marker': { color: theme('colors.magic-teal') }
+                      },
                     },
-                    backgroundImage: {
-                        'magic-gradient': 'linear-gradient(to right, #8A2BE2, #00BFA5)',
-                    },
-                    boxShadow: {
-                        'card-light': '0 5px 15px rgba(0, 0, 0, 0.08)',
-                        'card-dark': '0 5px 15px rgba(255, 255, 255, 0.05)',
-                        'card-hover-light': '0 8px 25px rgba(0, 0, 0, 0.12)',
-                        'card-hover-dark': '0 8px 25px rgba(255, 255, 255, 0.08)',
-                        'sidebar-light': '5px 0px 15px rgba(0,0,0,0.1)',
-                        'sidebar-dark': '5px 0px 15px rgba(0,0,0,0.25)',
-                    },
-                    typography: (theme) => ({
-                        DEFAULT: {
-                          css: {
-                            color: theme('colors.gray.700'),
-                            a: { color: theme('colors.magic-purple'), '&:hover': { color: theme('colors.magic-purple-light') } },
-                            strong: { color: theme('colors.gray.800') }, h5: { color: theme('colors.gray.800'), fontWeight: '600' },
-                            ul: { listStyleType: 'disc', paddingLeft: '1.5em' }, 'ul > li::marker': { color: theme('colors.magic-teal') }
-                          },
-                        },
-                        invert: {
-                           css: {
-                                color: theme('colors.slate.300'),
-                                a: { color: theme('colors.magic-teal'), '&:hover': { color: theme('colors.magic-teal-light') } },
-                                strong: { color: theme('colors.slate.100')}, h5: { color: theme('colors.slate.100'), fontWeight: '600' },
-                                'ul > li::marker': { color: theme('colors.magic-purple') }
-                           }
-                        }
-                    }),
-                }
-            },
-        }
-    </script>
+                    invert: {
+                       css: {
+                            color: theme('colors.slate.300'),
+                            a: { color: theme('colors.magic-teal'), '&:hover': { color: theme('colors.magic-teal-light') } },
+                            strong: { color: theme('colors.slate.100')}, h5: { color: theme('colors.slate.100'), fontWeight: '600' },
+                            'ul > li::marker': { color: theme('colors.magic-purple') }
+                       }
+                    }
+                }),
+            }
+        },
+    }
+</script>
 
-
-
-
-<!-- APP & FAVICON ICONS -->
-<script> function removeFromLinks(rel) {
-for (link of document.head.getElementsByTagName("link")) {
-if (link.rel == rel) {
-document.head.removeChild(link);
-}
-};
-}
-function createNewFavicon(rel, img) {
-var newFavicon = document.createElement("link");
-newFavicon.type = "image/png";
-newFavicon.rel = rel;
-newFavicon.href = img;
-var firstHeadElement = document.head.firstChild;
-document.head.insertBefore(newFavicon, firstHeadElement);
-}
-removeFromLinks("icon");
-removeFromLinks("shortcut icon");
-removeFromLinks("apple-touch-icon");
-createNewFavicon("icon", "https://bucket.mlcdn.com/a/3336/3336910/images/4750de8f08e2d68764dd9c049b523a66818f0d64.png");
-createNewFavicon("shortcut icon", "https://bucket.mlcdn.com/a/3336/3336910/images/4750de8f08e2d68764dd9c049b523a66818f0d64.png");
-createNewFavicon("apple-touch-icon", "https://bucket.mlcdn.com/a/3336/3336910/images/4750de8f08e2d68764dd9c049b523a66818f0d64.png"); </script>
-<!-- APP & FAVICON ICONS -->
-
-
-
-
-
-
-
-
-
-
-
-    
-    <style>
-
-
-        
-    :root {
+<style>
+:root {
   --bg: #f8fafc;
   --card: white;
   --text: #333;
@@ -142,100 +101,97 @@ createNewFavicon("apple-touch-icon", "https://bucket.mlcdn.com/a/3336/3336910/im
   --accent: #f472b6;
   --text-light: #94a3b8;
 }
-  
- 
-    .custom-image-widget {
-      position: fixed !important;
-      top: 80px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      right: 0px;
-      z-index: 999;
-    }
-    
-    .custom-image {
-      width: 70px;
-      height: auto;
-      transition: transform 0.2s;
-    }
-    
-    .custom-image-widget:hover .custom-image {
-      transform: scale(1.05);
-    }    
-    
-        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .gradient-text { background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .tool-card { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; }
-        .tool-card:hover { transform: translateY(-6px); }
-        .modal-content-anim { animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
-        
-        .sidebar-item.active {
-            background-color: #6A0DAD; 
-            color: white !important; 
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); 
-        }
-        .sidebar-item.active i, .sidebar-item.active span {
-            color: white !important;
-        }
-        .dark .sidebar-item.active {
-            background-color: #00BFA5; 
-        }
 
-        .view-mode-btn.active {
-            background-color: #6A0DAD; 
-            color: white; 
-        }
-        .dark .view-mode-btn.active {
-             background-color: #00BFA5; 
-        }
-        .view-mode-btn.active i {
-            color: white !important;
-        }
+.custom-image-widget {
+  position: fixed !important;
+  top: 80px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0px;
+  z-index: 999;
+}
 
-        .tool-card-list-item { display: flex; align-items: center; gap: 0.75rem; }
-        .tool-card-list-item .tool-icon-container { flex-shrink: 0; }
-        .tool-card-list-item .tool-content { flex-grow: 1; min-width: 0; }
-        .tool-card-list-item .tool-actions { flex-shrink: 0; display: flex; flex-direction: column; gap: 0.25rem; }
-        @media (min-width: 640px) { 
-            .tool-card-list-item { gap: 1rem; }
-            .tool-card-list-item .tool-actions { flex-direction: row; gap: 0.5rem; }
-        }
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-        .dark .loading-overlay {
-            background-color: rgba(15, 23, 42, 0.8);
-        }
-        .config-needed-message {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 1rem;
-        }
-        .skeleton-loader {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
+.custom-image {
+  width: 70px;
+  height: auto;
+  transition: transform 0.2s;
+}
 
-  
-  /* ===== FOOTER ===== */
+.custom-image-widget:hover .custom-image {
+  transform: scale(1.05);
+}    
+
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.gradient-text { background-clip: text; -webkit-background-clip: text; color: transparent; }
+.tool-card { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; }
+.tool-card:hover { transform: translateY(-6px); }
+.modal-content-anim { animation: fadeIn 0.3s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+
+.sidebar-item.active {
+    background-color: #df1783; /* Changed from #6A0DAD */
+    color: white !important; 
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); 
+}
+.sidebar-item.active i, .sidebar-item.active span {
+    color: white !important;
+}
+.dark .sidebar-item.active {
+    background-color: #00BFA5; 
+}
+
+.view-mode-btn.active {
+    background-color: #df1783; /* Changed from #6A0DAD */
+    color: white; 
+}
+.dark .view-mode-btn.active {
+     background-color: #00BFA5; 
+}
+.view-mode-btn.active i {
+    color: white !important;
+}
+
+.tool-card-list-item { display: flex; align-items: center; gap: 0.75rem; }
+.tool-card-list-item .tool-icon-container { flex-shrink: 0; }
+.tool-card-list-item .tool-content { flex-grow: 1; min-width: 0; }
+.tool-card-list-item .tool-actions { flex-shrink: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+@media (min-width: 640px) { 
+    .tool-card-list-item { gap: 1rem; }
+    .tool-card-list-item .tool-actions { flex-direction: row; gap: 0.5rem; }
+}
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.dark .loading-overlay {
+    background-color: rgba(15, 23, 42, 0.8);
+}
+.config-needed-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 1rem;
+}
+.skeleton-loader {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ===== FOOTER ===== */
 .footer {
 padding-top: 30px;
     background: transparent;
@@ -303,7 +259,7 @@ padding: 20px;
     color: #df1783;
 }
     
-  [data-theme="dark"] .footer {
+[data-theme="dark"] .footer {
     background: inherit;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
@@ -318,11 +274,9 @@ padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-  
-        
-        
-        
-    </style>
+</style>
+
+    
 </head>
 
 <body class="font-inter bg-slate-100 dark:bg-slate-850 text-gray-800 dark:text-slate-200">
@@ -364,9 +318,9 @@ padding: 20px;
         <div id="app-container" class="flex min-h-screen">
             <aside id="magicToolboxSidebar" class="w-72 bg-white dark:bg-slate-800 p-4 sm:p-5 shadow-sidebar-light dark:shadow-sidebar-dark fixed top-0 left-0 h-full overflow-y-auto transition-transform duration-300 ease-in-out lg:translate-x-0 z-40 flex flex-col custom-scrollbar -translate-x-full">
                 <div class="flex flex-col items-center mb-6 sm:mb-8">
-                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/7a8d827e98c4791a121f99ec3d8dd80f2a94ef5a.png" alt="Magic Toolbox Logo" class="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 mt-2">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/1bc7dc7d8a053a8d8bd726cdf1fb943551ce7e6d.png" alt="Vibecoding Toolbox Logo" class="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 mt-2">
                     <div class="flex items-center justify-between w-full">
-                        <h1 class="text-xl sm:text-2xl font-poppins font-bold gradient-text bg-magic-gradient flex-grow text-center">Magic Toolbox</h1>
+                        <h1 class="text-xl sm:text-2xl font-poppins font-bold gradient-text bg-magic-gradient flex-grow text-center">VibeCoding Toolbox</h1>
                         <button id="closeSidebarBtn" class="lg:hidden text-gray-500 dark:text-slate-400 p-1" aria-label="Close menu">
                             <i data-lucide="x" class="w-5 h-5"></i>
                         </button>
@@ -391,7 +345,7 @@ padding: 20px;
             <div id="main-content-wrapper" class="flex-1 flex flex-col lg:ml-72 min-w-0">
                 <main id="main-content-area" class="flex-1 p-4 sm:p-6 md:p-8 lg:p-10 transition-all duration-300 ease-in-out flex flex-col">
                     <div class="lg:hidden flex items-center justify-between mb-4 sm:mb-6">
-                        <h1 class="text-xl sm:text-2xl font-poppins font-bold gradient-text bg-magic-gradient">Magic Toolbox</h1>
+                        <h1 class="text-xl sm:text-2xl font-poppins font-bold gradient-text bg-magic-gradient">VibeCoding Toolbox</h1>
                         <button id="openSidebarBtn" class="text-gray-600 dark:text-slate-300 p-1" aria-label="Open menu">
                             <i data-lucide="menu" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </button>
