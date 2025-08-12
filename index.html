@@ -118,6 +118,7 @@
             justify-content: center;
             text-decoration: none;
         }
+    
         .btn-cta:hover {
             background-color: var(--primary-dark);
             transform: translateY(-1px);
@@ -139,6 +140,7 @@
             justify-content: center;
             flex-shrink: 0;
         }
+    
         .icon-bg i {
             color: white;
             font-size: 1.25rem;
@@ -392,7 +394,7 @@ padding: 20px;
         <div id="app-container" class="flex min-h-screen">
             <aside id="magicToolboxSidebar" class="w-72 bg-white dark:bg-slate-800 p-4 sm:p-5 shadow-sidebar-light dark:shadow-sidebar-dark fixed top-0 left-0 h-full overflow-y-auto transition-transform duration-300 ease-in-out lg:translate-x-0 z-40 flex flex-col custom-scrollbar -translate-x-full">
                 <div class="flex flex-col items-center mb-6 sm:mb-8">
-                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/1bc7dc7d8a053a8d8bd726cdf1fb943551ce7e6d.png" alt="Vibecoding Toolbox Logo" class="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 mt-2">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/c506fa1172c62b4aeed105882b84095ade5e6a2a.png" alt="Vibecoding Toolbox Logo" class="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 mt-2">
                     <div class="flex items-center justify-between w-full">
                         <h1 class="text-xl sm:text-2xl font-poppins font-bold gradient-text bg-magic-gradient flex-grow text-center">VibeCoding Toolbox</h1>
                         <button id="closeSidebarBtn" class="lg:hidden text-gray-500 dark:text-slate-400 p-1" aria-label="Close menu">
@@ -754,55 +756,60 @@ padding: 20px;
         }
 
         // --- TOOL CARD RENDERING ---
-        function createToolCardHTML(tool) {
-            const tagsHTML = tool.tags.map(tag => `<span class="text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full">${tag}</span>`).join('');
+ // --- TOOL CARD RENDERING ---
+function createToolCardHTML(tool) {
+    const tagsHTML = tool.tags.map(tag => `<span class="text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full">${tag}</span>`).join('');
 
-            if (viewMode === 'grid') {
-                return `
-                <div class="tool-card bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-xl shadow-card-light dark:shadow-card-dark hover:shadow-card-hover-light dark:hover:shadow-card-hover-dark flex flex-col">
-                    <div class="flex items-start mb-3 sm:mb-4">
-                        <div class="p-2 sm:p-2.5 bg-gradient-to-br from-magic-purple to-magic-teal rounded-lg mr-3 sm:mr-4 flex-shrink-0">
-                            <i data-lucide="${tool.icon}" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
-                        </div>
-                        <div class="min-w-0">
-                            <h3 class="text-base sm:text-lg font-poppins font-semibold text-gray-800 dark:text-slate-100 truncate" title="${tool.name}">${tool.name}</h3>
-                            <p class="text-xs text-magic-teal dark:text-magic-teal-light font-medium truncate" title="${tool.category} / ${tool.subcategoryName}">${tool.category} / ${tool.subcategoryName}</p>
-                        </div>
-                    </div>
-                    <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-300 mb-3 sm:mb-4 flex-grow">${tool.description.substring(0, 100) + (tool.description.length > 100 ? '...' : '')}</p>
-                    <div class="flex flex-wrap gap-1 mb-4 sm:gap-1.5 sm:mb-5">${tagsHTML}</div>
-                    <div class="mt-auto flex gap-2 sm:gap-3">
-                        <a href="${tool.externalUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm bg-magic-purple text-white font-medium rounded-lg transition-colors hover:bg-magic-purple-light dark:hover:bg-magic-purple-light">
-                            Visit <i data-lucide="external-link" class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1 sm:ml-1.5"></i>
-                        </a>
-                        <button data-tool-id="${tool.id}" class="open-modal-btn flex-1 inline-flex items-center justify-center px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-medium rounded-lg transition-colors">
-                            Details <i data-lucide="info" class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1 sm:ml-1.5"></i>
-                        </button>
-                    </div>
-                </div>`;
-            } else { // List view
-                return `
-                <div class="tool-card tool-card-list-item bg-white dark:bg-slate-800 p-3 sm:p-4 rounded-xl shadow-card-light dark:shadow-card-dark hover:shadow-card-hover-light dark:hover:shadow-card-hover-dark">
-                    <div class="tool-icon-container p-2 sm:p-2.5 bg-gradient-to-br from-magic-purple to-magic-teal rounded-lg">
-                        <i data-lucide="${tool.icon}" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
-                    </div>
-                    <div class="tool-content">
-                        <h3 class="text-base sm:text-lg font-poppins font-semibold text-gray-800 dark:text-slate-100 truncate" title="${tool.name}">${tool.name}</h3>
-                        <p class="text-xs text-magic-teal dark:text-magic-teal-light font-medium mb-0.5 sm:mb-1 truncate" title="${tool.category} / ${tool.subcategoryName}">${tool.category} / ${tool.subcategoryName}</p>
-                        <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-300 mb-1 sm:mb-2 truncate" title="${tool.description}">${tool.description}</p>
-                        <div class="flex flex-wrap gap-1 sm:gap-1.5">${tagsHTML}</div>
-                    </div>
-                    <div class="tool-actions">
-                        <a href="${tool.externalUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 bg-magic-purple text-white font-medium rounded-lg transition-colors whitespace-nowrap hover:bg-magic-purple-light dark:hover:bg-magic-purple-light">
-                            Visit <i data-lucide="external-link" class="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1"></i>
-                        </a>
-                        <button data-tool-id="${tool.id}" class="open-modal-btn inline-flex items-center justify-center px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-medium rounded-lg transition-colors whitespace-nowrap">
-                            Details <i data-lucide="info" class="w-2.5 h-2.5 sm:w-3 sm:h-3 ml-1"></i>
-                        </button>
-                    </div>
-                </div>`;
-            }
-        }
+    if (viewMode === 'grid') {
+        return `
+        <div class="tool-card bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-xl shadow-card-light dark:shadow-card-dark hover:shadow-card-hover-light dark:hover:shadow-card-hover-dark flex flex-col">
+            <div class="flex items-start mb-3 sm:mb-4">
+                <div class="p-2 sm:p-2.5 bg-primary rounded-lg mr-3 sm:mr-4 flex-shrink-0">
+                    <i data-lucide="${tool.icon}" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
+                </div>
+                <div class="min-w-0">
+                    <h3 class="text-base sm:text-lg font-poppins font-semibold text-gray-800 dark:text-slate-100 truncate" title="${tool.name}">${tool.name}</h3>
+                    <p class="text-xs text-primary dark:text-primary-light font-medium truncate" title="${tool.category} / ${tool.subcategoryName}">${tool.category} / ${tool.subcategoryName}</p>
+                </div>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-300 mb-3 sm:mb-4 flex-grow">${tool.description.substring(0, 100) + (tool.description.length > 100 ? '...' : '')}</p>
+            <div class="flex flex-wrap gap-1 mb-4 sm:gap-1.5 sm:mb-5">${tagsHTML}</div>
+            <div class="mt-auto flex gap-2 sm:gap-3">
+                <a href="${tool.externalUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm bg-primary text-white font-medium rounded-lg transition-colors hover:bg-primary-dark dark:hover:bg-primary-light">
+                    Visit <i data-lucide="external-link" class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1 sm:ml-1.5"></i>
+                </a>
+                <button data-tool-id="${tool.id}" class="open-modal-btn flex-1 inline-flex items-center justify-center px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-medium rounded-lg transition-colors">
+                    Details <i data-lucide="info" class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1 sm:ml-1.5"></i>
+                </button>
+            </div>
+        </div>`;
+    } else { // List view
+        return `
+        <div class="tool-card tool-card-list-item bg-white dark:bg-slate-800 p-3 sm:p-4 rounded-xl shadow-card-light dark:shadow-card-dark hover:shadow-card-hover-light dark:hover:shadow-card-hover-dark">
+            <div class="tool-icon-container p-2 sm:p-2.5 bg-primary rounded-lg">
+                <i data-lucide="${tool.icon}" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
+            </div>
+            <div class="tool-content">
+                <h3 class="text-base sm:text-lg font-poppins font-semibold text-gray-800 dark:text-slate-100 truncate" title="${tool.name}">${tool.name}</h3>
+                <p class="text-xs text-primary dark:text-primary-light font-medium mb-0.5 sm:mb-1 truncate" title="${tool.category} / ${tool.subcategoryName}">${tool.category} / ${tool.subcategoryName}</p>
+                <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-300 mb-1 sm:mb-2 truncate" title="${tool.description}">${tool.description}</p>
+                <div class="flex flex-wrap gap-1 sm:gap-1.5">${tagsHTML}</div>
+            </div>
+            <div class="tool-actions">
+                <a href="${tool.externalUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-3 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm bg-primary text-white font-medium rounded-lg transition-colors hover:bg-primary-dark dark:hover:bg-primary-light">
+                    Visit <i data-lucide="external-link" class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1"></i>
+                </a>
+                <button data-tool-id="${tool.id}" class="open-modal-btn inline-flex items-center justify-center px-3 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-medium rounded-lg transition-colors">
+                    Details <i data-lucide="info" class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1"></i>
+                </button>
+            </div>
+        </div>`;
+    }
+}
+
+
+
+    
         
         function renderErrorMessage(message, isConfigError = false) {
             let detailMessage = '';
@@ -845,6 +852,10 @@ padding: 20px;
             }
             refreshLucideIcons();
         }
+
+
+
+    
 
         // --- MAIN CONTENT AREA LOGIC ---
         function getFilteredTools() {
@@ -1224,12 +1235,6 @@ padding: 20px;
         document.addEventListener('DOMContentLoaded', initializeApp);
 
     </script>
-
-
-
-
-
-
 
 
     
