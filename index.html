@@ -980,27 +980,32 @@ if (canShowMore) {
 // Initialize icons
 refreshLucideIcons();
 
-        function renderMainContentArea() {
-            const categoryData = currentCategoryId === ALL_TOOLS_CATEGORY_ID 
-                ? { name: ALL_TOOLS_CATEGORY_NAME, description: ALL_TOOLS_CATEGORY_DESCRIPTION }
-                : toolboxData.find(cat => cat.id === currentCategoryId);
 
-            if (categoryNameEl && categoryDescriptionEl) {
-                if (categoryData) {
-                    categoryNameEl.textContent = categoryData.name;
-                    categoryDescriptionEl.textContent = categoryData.description;
-                } else { 
-                    categoryNameEl.textContent = "Loading..."; // Fallback if category not found (should not happen if data is loaded)
-                    categoryDescriptionEl.textContent = "";
-                }
-            }
             
-            showAllSubcategoriesState = false; 
-            renderSubcategoryFilters();
-            renderTools();
-            updateViewModeButtons();
+
+function renderMainContentArea() {
+    const categoryData = currentCategoryId === ALL_TOOLS_CATEGORY_ID 
+        ? { name: ALL_TOOLS_CATEGORY_NAME, description: ALL_TOOLS_CATEGORY_DESCRIPTION }
+        : toolboxData.find(cat => cat.id === currentCategoryId);
+
+    if (categoryNameEl && categoryDescriptionEl) {
+        if (categoryData) {
+            categoryNameEl.textContent = categoryData.name;
+            categoryDescriptionEl.textContent = categoryData.description;
+        } else { 
+            categoryNameEl.textContent = "Loading...";
+            categoryDescriptionEl.textContent = "";
         }
-        
+    }
+    
+    showAllSubcategoriesState = false; 
+    renderSubcategoryFilters();
+    renderTools();
+    updateViewModeButtons();
+}
+
+
+            
         function updateViewModeButtons() {
             if (!gridViewBtn || !listViewBtn) return;
             if (viewMode === 'grid') {
